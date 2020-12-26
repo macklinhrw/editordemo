@@ -5,20 +5,21 @@ import { handleKeyCommand } from "./handleKeyCommand";
 import { emptyContentState } from "./emptyContentState";
 import { Toolbar } from "./Toolbar";
 import styleMap from "./styleMap";
+import { NoteComponent } from "./NoteComponent";
 // import { UnorderedListComponent } from "./UnorderedListComponent";
 // import Editor from "draft-js-plugins-editor";
 
 const blockRenderer: any = (block: ContentBlock) => {
   const type = block.getType();
-  // if (type === "unordered-list-item") {
-  //   return {
-  //     component: UnorderedListComponent,
-  //     editable: true,
-  //     props: {
-  //       foo: "bar",
-  //     },
-  //   };
-  // }
+  if (type === "note-item") {
+    return {
+      component: NoteComponent,
+      editable: false,
+      // props: {
+      //   foo: "bar",
+      // },
+    };
+  }
 };
 
 const getBlockStyle = (block: ContentBlock) => {

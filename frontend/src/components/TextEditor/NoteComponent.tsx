@@ -2,14 +2,12 @@ import { Button } from "@chakra-ui/react";
 import { ContentBlock, ContentState } from "draft-js";
 import React from "react";
 
-interface UnorderedListComponentProps {
+interface NoteComponentProps {
   block: ContentBlock;
   contentState: ContentState;
 }
 
-export const UnorderedListComponent: React.FC<UnorderedListComponentProps> = (
-  props
-) => {
+export const NoteComponent: React.FC<NoteComponentProps> = (props) => {
   const { block, contentState } = props;
   //@ts-ignore
   // const { foo } = props.blockProps;
@@ -17,8 +15,10 @@ export const UnorderedListComponent: React.FC<UnorderedListComponentProps> = (
   // const data = contentState;
   // console.log(block.getText());
   return (
-    <ul>
-      <li>{block.getText()}</li>
-    </ul>
+    <>
+      <Button ml={2} onClick={() => console.log(block.getText())}>
+        {block.getText()}
+      </Button>
+    </>
   );
 };

@@ -26,7 +26,7 @@ const theme = extendTheme({
       blockquote: {
         borderLeft: "10px solid",
         borderColor: props.colorMode === "dark" ? "gray.700" : "gray.400",
-        margin: "0px 10px 0 0",
+        margin: "0 0 0 0",
         padding: "0.5em 10px",
       },
       a: {
