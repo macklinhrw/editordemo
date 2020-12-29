@@ -19,7 +19,7 @@ const BLOCK_TYPES = [
     style: "ordered-list-item",
     tooltip: "Numbered List",
   },
-  { icon: MdFormatBold, style: "note-item", tooltip: "Note Item" },
+  // { icon: MdFormatBold, style: "note-item", tooltip: "Note Item" },
 ];
 
 export default BLOCK_TYPES;
