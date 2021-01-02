@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { EditorContext } from "../hooks/EditorContext";
 
 function completeLink(link: string) {
-  if (!link.includes("http://")) return "https://" + link;
+  if (!link.includes("http")) return "http://" + link;
   return link;
 }
 
@@ -42,8 +42,6 @@ export const useInsertLink = () => {
       setEditorState(
         RichUtils.toggleLink(editorStateWithText, newSelection, entityKey)
       );
-      return newSelection;
     }
-    return editorState.getSelection();
   };
 };

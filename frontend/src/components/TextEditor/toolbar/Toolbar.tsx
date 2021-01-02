@@ -1,12 +1,13 @@
 import { HStack, StackProps, SystemProps } from "@chakra-ui/react";
 import React from "react";
-// import { CgInsertAfterO } from "react-icons/cg";
 import { IoUnlink } from "react-icons/io5";
 import { ToolbarButton } from "./ToolbarButton";
 import { AddLinkButton } from "../links/AddLinkButton";
 import { InlineStyleControls } from "./InlineStyleControls";
 import { BlockStyleControls } from "./BlockStyleControls";
 import { useRemoveLink } from "../links/useRemoveLink";
+import { useInsertNote } from "../notes/useInsertNote";
+import { AddNoteButton } from "../notes/AddNoteButton";
 
 const btnHover = { light: "blue.100", dark: "gray.400" };
 const btnActive = { light: "blue.200", dark: "gray.500" };
@@ -55,13 +56,21 @@ export const Toolbar: React.FC<ToolbarProps> = ({
           btnHover={btnHover}
           onMouseDown={removeLink}
         />
+        <AddNoteButton
+          btnActive={btnActive}
+          btnShadow={btnShadow}
+          btnHover={btnHover}
+        />
         {/* <ToolbarButton
           icon={CgInsertAfterO}
           label="Add Note"
           btnActive={btnActive}
           btnShadow={btnShadow}
           btnHover={btnHover}
-          onMouseDown={removeLink}
+          onMouseDown={(e) => {
+            e.preventDefault();
+            insertNote("This is inside the note");
+          }}
         /> */}
       </HStack>
     </HStack>

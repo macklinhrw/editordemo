@@ -5,6 +5,8 @@ interface EditorContextProps {
   editorState: EditorState;
   setEditorState: React.Dispatch<React.SetStateAction<EditorState>>;
   editorRef: any;
+  scrollLock: boolean;
+  setScrollLock: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 //@ts-ignore

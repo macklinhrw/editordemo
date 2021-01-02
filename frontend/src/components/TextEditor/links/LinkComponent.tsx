@@ -10,17 +10,36 @@ import {
   PopoverTrigger,
   Portal,
   Text,
+  useDisclosure,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useContext, useEffect } from "react";
+import { EditorContext } from "../hooks/EditorContext";
+import { LinkContext } from "./LinkContext";
 
-export const LinkComponenet: React.FC = (props: any) => {
+export const LinkComponent: React.FC = (props: any) => {
   const { url } = props.contentState.getEntity(props.entityKey).getData();
+  const { onOpen, onClose, isOpen } = useDisclosure();
+  const { setScrollLock } = useContext(EditorContext);
+  const { setShow } = useContext(LinkContext);
+  useEffect(() => {
+    onOpen();
+    setScrollLock(true);
+  });
   return (
     <>
-      <Popover>
+      <Popover
+        onOpen={() => {
+          onOpen();
+        }}
+        onClose={() => {
+          onClose();
+          setShow(false);
+          setScrollLock(false);
+        }}
+        isOpen={isOpen}
+      >
         <PopoverTrigger>
           <Link
-            href={url}
             color="blue.600"
             _hover={{
               color: "blue.500",

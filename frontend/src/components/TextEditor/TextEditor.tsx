@@ -5,8 +5,8 @@ import { emptyContentState } from "./constants/emptyContentState";
 import { Toolbar } from "./toolbar/Toolbar";
 import styleMap from "./constants/styleMap";
 import { EditorContext } from "./hooks/EditorContext";
-import { linkDecorators } from "./links/linkDecorators";
 import { useHandleKeyCommand } from "./hooks/useHandleKeyCommand";
+import { linkDecorators } from "./decorators";
 
 const editorBg = { light: "white", dark: "gray.400" };
 const dividerColor = { light: "gray.400", dark: "gray.600" };
@@ -19,9 +19,18 @@ export const TextEditor: React.FC = () => {
     EditorState.createWithContent(emptyContentState, linkDecorators)
   );
   const [handleKeyCommand] = useHandleKeyCommand(editorState, setEditorState);
+  const [scrollLock, setScrollLock] = useState(false);
 
   return (
-    <EditorContext.Provider value={{ editorState, setEditorState, editorRef }}>
+    <EditorContext.Provider
+      value={{
+        editorState,
+        setEditorState,
+        editorRef,
+        scrollLock,
+        setScrollLock,
+      }}
+    >
       <VStack
         mt={20}
         w="100%"
@@ -46,6 +55,8 @@ export const TextEditor: React.FC = () => {
           color="black"
           pl={2}
           onClick={() => editorRef.current?.focus()}
+          overflowY={scrollLock ? "hidden" : "auto"}
+          pr={scrollLock ? "1vh" : 0}
         >
           <Editor
             //@ts-ignore

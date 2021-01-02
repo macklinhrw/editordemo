@@ -37,12 +37,6 @@ export const AddLinkButton: React.FC<ButtonProps & AddLinkButtonProps> = ({
   const [url, setUrl] = useState("");
   const [text, setText] = useState("");
   const [isUrl, setIsUrl] = useState(true);
-  const handleTextIsUrlChange = (event: React.ChangeEvent<HTMLInputElement>) =>
-    setIsUrl(event.target.checked);
-  const handleUrlChange = (event: React.ChangeEvent<HTMLInputElement>) =>
-    setUrl(event.target.value);
-  const handleTextChange = (event: React.ChangeEvent<HTMLInputElement>) =>
-    setText(event.target.value);
   const addLink = useAddLink();
   const insertLink = useInsertLink();
   const selection = editorState.getSelection();
@@ -74,35 +68,43 @@ export const AddLinkButton: React.FC<ButtonProps & AddLinkButtonProps> = ({
         initialFocusRef={initRef}
         isOpen={isOpen}
         onClose={onClose}
-        returnFocusOnClose={true}
       >
         <ModalContent>
           <ModalHeader>{isInsertLink ? "Insert Link" : "Add Link"}</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
+            <Text fontSize="sm">Link</Text>
             <Input
-              placeholder="Enter a url..."
+              placeholder="Enter a link..."
               value={url}
-              onChange={handleUrlChange}
+              onChange={(e) => {
+                setUrl(e.target.value);
+              }}
               //@ts-ignore
               ref={initRef}
             />
             {isInsertLink ? (
               <>
-                <HStack spacing={4} mt={2}>
+                <Text mt={2} fontSize="sm">
+                  Text
+                </Text>
+                <Input
+                  placeholder="Enter some text..."
+                  value={text}
+                  onChange={(e) => {
+                    setText(e.target.value);
+                  }}
+                  isDisabled={isUrl}
+                />
+                <HStack spacing={4} mt={4}>
                   <Switch
-                    onChange={handleTextIsUrlChange}
+                    onChange={(e) => {
+                      setIsUrl(e.target.checked);
+                    }}
                     defaultIsChecked={true}
                   />
                   <Text fontSize="sm">Text is same as url</Text>
                 </HStack>
-                <Input
-                  mt={3}
-                  placeholder="Enter some text..."
-                  value={text}
-                  onChange={handleTextChange}
-                  isDisabled={isUrl}
-                />
               </>
             ) : (
               ""
