@@ -17,7 +17,7 @@ const theme = extendTheme({
         fontSize: "lg",
         color: props.colorMode === "dark" ? "white" : "gray.600",
         lineHeight: "tall",
-        bg: props.colorMode === "dark" ? "gray.900" : "gray.200",
+        bg: props.colorMode === "dark" ? "gray.800" : "gray.200",
       },
       h1: {
         fontSize: "2.5rem",
@@ -31,6 +31,13 @@ const theme = extendTheme({
       },
       a: {
         color: props.colorMode === "dark" ? "teal.300" : "teal.500",
+      },
+      "#reader": {
+        color: props.colorMode === "dark" ? "gray.300" : "black",
+      },
+      ".paragraph": {
+        margin: "0.8em 0",
+        lineHeight: "1.8",
       },
     }),
   },

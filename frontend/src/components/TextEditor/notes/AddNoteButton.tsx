@@ -19,7 +19,7 @@ import {
 } from "@chakra-ui/react";
 import React, { useContext, useRef, useState } from "react";
 import { CgInsertAfterO } from "react-icons/cg";
-import { EditorContext } from "../hooks/EditorContext";
+import { TextEditorContext } from "../hooks/TextEditorContext";
 import { useAddLinkModal } from "../links/useAddLinkModal";
 import { ToolbarButton } from "../toolbar/ToolbarButton";
 import { useInsertNote } from "./useInsertNote";
@@ -36,10 +36,10 @@ export const AddNoteButton: React.FC<ButtonProps & AddLinkButtonProps> = ({
   btnHover,
   ...props
 }) => {
-  const { editorState, editorRef } = useContext(EditorContext);
+  const { editorState, editorRef } = useContext(TextEditorContext);
   const { isOpen, onOpen, onClose } = useAddLinkModal();
   const [text, setText] = useState("");
-  const [label, setLabel] = useState("");
+  const [label, setLabel] = useState("1");
   // const selection = editorState.getSelection();
   // const start = selection.getStartOffset();
   // const end = selection.getEndOffset();

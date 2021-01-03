@@ -3,7 +3,7 @@ import { ChakraProvider } from "@chakra-ui/react";
 import theme from "../theme";
 import { AppProps } from "next/app";
 
-import "../styles/TextEditor.css";
+import "../styles/Editor.css";
 import "../styles/DraftModified.css";
 import "../styles/ScrollBar.css";
 

@@ -15,14 +15,14 @@ import {
   Box,
 } from "@chakra-ui/react";
 import React, { useContext, useEffect } from "react";
-import { EditorContext } from "../hooks/EditorContext";
+import { TextEditorContext } from "../hooks/TextEditorContext";
 import { NoteContext } from "./NoteContext";
 
 interface NoteComponentProps {}
-const btnHover = { light: "gray.500", dark: "gray.800" };
+const btnHover = { light: "gray.500", dark: "gray.600" };
 const btnColor = { light: "black", dark: "gray.200" };
-const btnActive = { light: "gray.500", dark: "gray.800" };
-const btnBg = { light: "gray.500", dark: "gray.800" };
+const btnBg = { light: "gray.500", dark: "gray.600" };
+const btnActive = { light: "gray.500", dark: "gray.600" };
 
 export const NoteComponent: React.FC<NoteComponentProps> = React.memo(
   (props: any) => {
@@ -32,7 +32,7 @@ export const NoteComponent: React.FC<NoteComponentProps> = React.memo(
     const { colorMode } = useColorMode();
     const { onOpen, onClose, isOpen } = useDisclosure();
     const { setShow } = useContext(NoteContext);
-    const { setScrollLock } = useContext(EditorContext);
+    const { setScrollLock } = useContext(TextEditorContext);
     useEffect(() => {
       onOpen();
       setScrollLock(true);
@@ -66,12 +66,14 @@ export const NoteComponent: React.FC<NoteComponentProps> = React.memo(
           <Portal>
             <PopoverContent>
               <PopoverArrow />
-              <PopoverHeader>{label}</PopoverHeader>
               <PopoverCloseButton />
               <PopoverBody>
-                <Text style={{ whiteSpace: "pre-wrap" }}>{text}</Text>
+                <Text style={{ whiteSpace: "pre-wrap" }} mt={3}>
+                  {text}
+                </Text>
                 <Flex>
                   <Button
+                    mt={5}
                     ml="auto"
                     colorScheme="red"
                     onClick={() => {

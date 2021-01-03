@@ -2,7 +2,7 @@ import { HStack, StackProps } from "@chakra-ui/react";
 import { RichUtils } from "draft-js";
 import React, { useContext } from "react";
 import INLINE_STYLES from "../constants/InlineStyleConstants";
-import { EditorContext } from "../hooks/EditorContext";
+import { TextEditorContext } from "../hooks/TextEditorContext";
 import { ToolbarButton, ToolbarButtonProps } from "./ToolbarButton";
 
 export const InlineStyleControls: React.FC<StackProps & ToolbarButtonProps> = ({
@@ -11,7 +11,7 @@ export const InlineStyleControls: React.FC<StackProps & ToolbarButtonProps> = ({
   btnHover,
   ...props
 }) => {
-  const { editorState, setEditorState } = useContext(EditorContext);
+  const { editorState, setEditorState } = useContext(TextEditorContext);
   const currentStyle = editorState.getCurrentInlineStyle();
   return (
     <HStack {...props}>

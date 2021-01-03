@@ -1,6 +1,6 @@
 import { EditorState, RichUtils } from "draft-js";
 import { useContext } from "react";
-import { EditorContext } from "../hooks/EditorContext";
+import { TextEditorContext } from "../hooks/TextEditorContext";
 
 function completeLink(link: string) {
   if (!link.includes("http")) return "http://" + link;
@@ -8,7 +8,7 @@ function completeLink(link: string) {
 }
 
 export const useAddLink = () => {
-  const { editorState, setEditorState } = useContext(EditorContext);
+  const { editorState, setEditorState } = useContext(TextEditorContext);
   return (url: string) => {
     const contentState = editorState?.getCurrentContent();
     const contentStateWithEntity = contentState?.createEntity(

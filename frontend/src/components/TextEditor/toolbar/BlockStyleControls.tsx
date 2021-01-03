@@ -2,7 +2,7 @@ import { HStack, StackProps } from "@chakra-ui/react";
 import { RichUtils } from "draft-js";
 import React, { useContext } from "react";
 import BLOCK_TYPES from "../constants/BlockStyleConstants";
-import { EditorContext } from "../hooks/EditorContext";
+import { TextEditorContext } from "../hooks/TextEditorContext";
 import { ToolbarButton, ToolbarButtonProps } from "./ToolbarButton";
 
 export const BlockStyleControls: React.FC<StackProps & ToolbarButtonProps> = ({
@@ -11,7 +11,7 @@ export const BlockStyleControls: React.FC<StackProps & ToolbarButtonProps> = ({
   btnHover,
   ...props
 }) => {
-  const { editorState, setEditorState } = useContext(EditorContext);
+  const { editorState, setEditorState } = useContext(TextEditorContext);
   const selection = editorState.getSelection();
   const blockType = editorState
     .getCurrentContent()

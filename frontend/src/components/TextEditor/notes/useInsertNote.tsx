@@ -1,9 +1,9 @@
 import { EditorState, Modifier } from "draft-js";
 import { useContext } from "react";
-import { EditorContext } from "../hooks/EditorContext";
+import { TextEditorContext } from "../hooks/TextEditorContext";
 
 export const useInsertNote = () => {
-  const { editorState, setEditorState } = useContext(EditorContext);
+  const { editorState, setEditorState } = useContext(TextEditorContext);
   return (text: string, label: string) => {
     const contentState = editorState?.getCurrentContent();
     const contentStateWithEntity = contentState?.createEntity(

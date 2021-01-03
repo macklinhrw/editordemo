@@ -1,7 +1,7 @@
 import { EditorState } from "draft-js";
 import React, { createContext } from "react";
 
-interface EditorContextProps {
+interface TextEditorContextProps {
   editorState: EditorState;
   setEditorState: React.Dispatch<React.SetStateAction<EditorState>>;
   editorRef: any;
@@ -10,4 +10,4 @@ interface EditorContextProps {
 }
 
 //@ts-ignore
-export const EditorContext = createContext<EditorContextProps>({});
+export const TextEditorContext = createContext<TextEditorContextProps>({});

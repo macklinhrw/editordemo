@@ -13,13 +13,13 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import React, { useContext, useEffect } from "react";
-import { EditorContext } from "../hooks/EditorContext";
+import { TextEditorContext } from "../hooks/TextEditorContext";
 import { LinkContext } from "./LinkContext";
 
 export const LinkComponent: React.FC = (props: any) => {
   const { url } = props.contentState.getEntity(props.entityKey).getData();
   const { onOpen, onClose, isOpen } = useDisclosure();
-  const { setScrollLock } = useContext(EditorContext);
+  const { setScrollLock } = useContext(TextEditorContext);
   const { setShow } = useContext(LinkContext);
   useEffect(() => {
     onOpen();

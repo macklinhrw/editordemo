@@ -4,10 +4,10 @@ import { NoteComponent } from "./NoteComponent";
 import { NoteContext } from "./NoteContext";
 
 interface NoteWrapperProps {}
-const btnHover = { light: "gray.500", dark: "gray.800" };
+const btnHover = { light: "gray.500", dark: "gray.600" };
 const btnColor = { light: "black", dark: "gray.200" };
-const btnBg = { light: "gray.300", dark: "gray.600" };
-const btnActive = { light: "gray.500", dark: "gray.800" };
+const btnBg = { light: "gray.300", dark: "gray.700" };
+const btnActive = { light: "gray.500", dark: "gray.600" };
 
 export const NoteWrapper: React.FC<NoteWrapperProps> = React.memo(
   (props: any) => {

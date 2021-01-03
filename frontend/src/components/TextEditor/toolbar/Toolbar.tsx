@@ -6,21 +6,24 @@ import { AddLinkButton } from "../links/AddLinkButton";
 import { InlineStyleControls } from "./InlineStyleControls";
 import { BlockStyleControls } from "./BlockStyleControls";
 import { useRemoveLink } from "../links/useRemoveLink";
-import { useInsertNote } from "../notes/useInsertNote";
 import { AddNoteButton } from "../notes/AddNoteButton";
-
-const btnHover = { light: "blue.100", dark: "gray.400" };
-const btnActive = { light: "blue.200", dark: "gray.500" };
-const btnShadow = { light: "-1px 1px 1px 1px rgba(0, 0, 0, 0.2)", dark: "" };
 
 interface ChildProps {
   buttonSpacing: SystemProps["margin"];
 }
+interface ToolbarProps {
+  btnShadow: { light: string; dark: string };
+  btnActive: { light: string; dark: string };
+  btnHover: { light: string; dark: string };
+}
 
-type ToolbarProps = StackProps & ChildProps;
+type ToolbarCombinedProps = ToolbarProps & StackProps & ChildProps;
 
-export const Toolbar: React.FC<ToolbarProps> = ({
+export const Toolbar: React.FC<ToolbarCombinedProps> = ({
   buttonSpacing,
+  btnShadow,
+  btnActive,
+  btnHover,
   ...props
 }) => {
   // const logState = () => {

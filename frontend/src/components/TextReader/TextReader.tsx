@@ -1,27 +1,29 @@
 import { Box, StackDivider, useColorMode, VStack } from "@chakra-ui/react";
-import React, { useContext, useRef, useState } from "react";
-import { DefaultDraftBlockRenderMap, Editor } from "draft-js";
-import { Toolbar } from "./toolbar/Toolbar";
-import styleMap from "./constants/styleMap";
-import { TextEditorContext } from "./hooks/TextEditorContext";
-import { useHandleKeyCommand } from "./hooks/useHandleKeyCommand";
-import { EditorStateContext } from "../EditorPage/hooks/EditorStateContext";
-import { blockRenderMap } from "./constants/blockRenderMap";
-import { blockStyleFn } from "./constants/blockStyleFn";
+import React, { useRef, useState } from "react";
+import { EditorState, Editor, DefaultDraftBlockRenderMap } from "draft-js";
+import styleMap from "../TextEditor/constants/styleMap";
+import { linkDecorators } from "../TextEditor/decorators";
+import { TextEditorContext } from "../TextEditor/hooks/TextEditorContext";
+import { useHandleKeyCommand } from "../TextEditor/hooks/useHandleKeyCommand";
+import { blockRenderMap } from "../TextEditor/constants/blockRenderMap";
+import { blockStyleFn } from "../TextEditor/constants/blockStyleFn";
 
-const editorBg = { light: "white", dark: "gray.400" };
+const readerBg = { light: "white", dark: "gray.900" };
 const dividerColor = { light: "gray.400", dark: "gray.600" };
-const editorBorder = { light: "gray.600", dark: "gray.200" };
-const btnHover = { light: "blue.100", dark: "gray.400" };
-const btnActive = { light: "blue.200", dark: "gray.500" };
-const btnShadow = { light: "-1px 1px 1px 1px rgba(0, 0, 0, 0.2)", dark: "" };
+const readerBorder = { light: "gray.600", dark: "gray.400" };
+
+interface TextReaderProps {
+  content: Draft.ContentState;
+}
 
 const renderMap = DefaultDraftBlockRenderMap.merge(blockRenderMap);
 
-export const TextEditor: React.FC = () => {
+export const TextReader: React.FC<TextReaderProps> = ({ content }) => {
   const { colorMode } = useColorMode();
   const editorRef = useRef<Editor>();
-  const { editorState, setEditorState } = useContext(EditorStateContext);
+  const [editorState, setEditorState] = useState(() =>
+    EditorState.createWithContent(content, linkDecorators)
+  );
   const [handleKeyCommand] = useHandleKeyCommand(editorState, setEditorState);
   const [scrollLock, setScrollLock] = useState(false);
 
@@ -49,26 +51,18 @@ export const TextEditor: React.FC = () => {
           />
         }
       >
-        <Toolbar
-          buttonSpacing={1}
-          spacing={3}
-          width="60%"
-          btnActive={btnActive}
-          btnShadow={btnShadow}
-          btnHover={btnHover}
-        />
         <Box
-          w="60%"
+          w="50%"
           border="2px"
-          borderColor={editorBorder[colorMode]}
+          borderColor={readerBorder[colorMode]}
           borderRadius="md"
-          bg={editorBg[colorMode]}
+          bg={readerBg[colorMode]}
           color="black"
-          pl={2}
+          pr={5}
+          pl={5}
+          pb={5}
           onClick={() => editorRef.current?.focus()}
-          overflowY={scrollLock ? "hidden" : "auto"}
-          pr={scrollLock ? "1vh" : 0}
-          id="editor"
+          id="reader"
         >
           <Editor
             //@ts-ignore
@@ -79,6 +73,7 @@ export const TextEditor: React.FC = () => {
             customStyleMap={styleMap}
             blockStyleFn={blockStyleFn}
             // blockRenderMap={renderMap}
+            readOnly
           />
         </Box>
       </VStack>

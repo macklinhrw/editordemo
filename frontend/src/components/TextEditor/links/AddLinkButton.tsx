@@ -14,7 +14,7 @@ import {
 } from "@chakra-ui/react";
 import React, { useContext, useRef, useState } from "react";
 import { IoLink } from "react-icons/io5";
-import { EditorContext } from "../hooks/EditorContext";
+import { TextEditorContext } from "../hooks/TextEditorContext";
 import { useAddLink } from "./useAddLink";
 import { ToolbarButton } from "../toolbar/ToolbarButton";
 import { useInsertLink } from "./useInsertLink";
@@ -32,7 +32,7 @@ export const AddLinkButton: React.FC<ButtonProps & AddLinkButtonProps> = ({
   btnHover,
   ...props
 }) => {
-  const { editorState, editorRef } = useContext(EditorContext);
+  const { editorState, editorRef } = useContext(TextEditorContext);
   const { isOpen, onOpen, onClose } = useAddLinkModal();
   const [url, setUrl] = useState("");
   const [text, setText] = useState("");
