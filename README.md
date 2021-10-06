@@ -18,7 +18,7 @@ is a good alternative that also supports collaborative editing. I will try to us
 
 # Note on backend
 
-This editor was originally intended to be part of a bigger project, so there is some bootstrap in the backend as well as frontend. However, I won't remove it so I can use it as reference as well.
+This editor was originally intended to be part of a bigger project, so there is some bootstrap in the backend as well as frontend. However, I won't remove it so I can use it as reference.
 
 # Use
 
