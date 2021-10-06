@@ -15,7 +15,12 @@ export const useInsertNote = () => {
       }
     );
     const entityKey = contentStateWithEntity?.getLastCreatedEntityKey();
-    if (editorState && setEditorState && entityKey) {
+    if (
+      editorState &&
+      setEditorState &&
+      entityKey &&
+      editorState.getSelection().isCollapsed()
+    ) {
       //insert text label text with entity key
       const newEditorState = EditorState.set(editorState, {
         currentContent: contentStateWithEntity,
