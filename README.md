@@ -16,6 +16,10 @@ I'm happy with how it turned out, and I will use it as reference in the future. 
 There is a new library out that might be a good alternative to draftjs: Slate React. Draftjs is no longer maintained, so this
 is a good alternative that also supports collaborative editing. I will try to use it in future projects.
 
+# Note on backend
+
+This editor was originally intended to be part of a bigger project, so there is some bootstrap in the backend as well as frontend. However, I won't remove it so I can use it as reference as well.
+
 # Use
 
 Clone the repo and navigate to the frontend
