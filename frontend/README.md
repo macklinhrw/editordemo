@@ -12,4 +12,4 @@ Run the development server
 
 `yarn dev`
 
-Open the link that the console prints into your browser (or click), and experiment try using the editor!
+Copy the link that the console prints into your browser (or click), and experiment using the editor!
